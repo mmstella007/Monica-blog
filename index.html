@@ -99,33 +99,6 @@ em  { font-style: italic; }
 }
 
 /* ================================================================
-   CUSTOM CURSOR
-   ================================================================ */
-.cursor-dot {
-  position: fixed;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--mauve);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%,-50%);
-  transition: opacity 0.2s;
-  mix-blend-mode: multiply;
-}
-.cursor-ring {
-  position: fixed;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  border: 1px solid var(--mauve);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%,-50%);
-  transition: width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
-}
-
-/* ================================================================
    NAVIGATION
    ================================================================ */
 nav {
@@ -1056,10 +1029,6 @@ footer::before {
 
 <body>
 
-<!-- CUSTOM CURSOR -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- ABSTRACT ART CANVAS -->
 <canvas id="art-canvas"></canvas>
 
@@ -1490,27 +1459,6 @@ footer::before {
      JAVASCRIPT
      ============================================================ -->
 <script>
-/* -------------------------------------------------------
-   CUSTOM CURSOR
-------------------------------------------------------- */
-const dot  = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
-window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-(function cursorLoop() {
-  rx += (mx - rx) * 0.14;
-  ry += (my - ry) * 0.14;
-  dot.style.left  = mx + 'px';
-  dot.style.top   = my + 'px';
-  ring.style.left = rx + 'px';
-  ring.style.top  = ry + 'px';
-  requestAnimationFrame(cursorLoop);
-})();
-document.querySelectorAll('a,button,input,.cat-card,.blog-card').forEach(el => {
-  el.addEventListener('mouseenter', () => { ring.style.width = '52px'; ring.style.height = '52px'; ring.style.opacity = '0.8'; });
-  el.addEventListener('mouseleave', () => { ring.style.width = '32px'; ring.style.height = '32px'; ring.style.opacity = '0.5'; });
-});
-
 /* -------------------------------------------------------
    NAVBAR
 ------------------------------------------------------- */
